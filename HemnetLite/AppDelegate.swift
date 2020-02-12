@@ -8,7 +8,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let frame = UIScreen.main.bounds
         window = UIWindow(frame: frame)
 
-        window?.rootViewController = PropertiestListViewController()
+        window?.rootViewController = PropertiesListViewController()
         window?.makeKeyAndVisible()
 
         return true

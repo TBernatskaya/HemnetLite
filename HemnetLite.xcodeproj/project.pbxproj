@@ -9,10 +9,12 @@
 /* Begin PBXBuildFile section */
 		D8059F2523F41DBC00F91552 /* PropertiesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8059F2423F41DBC00F91552 /* PropertiesService.swift */; };
 		D8059F2723F41DD800F91552 /* Property.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8059F2623F41DD800F91552 /* Property.swift */; };
-		D8059F2923F41E1E00F91552 /* PropertiestListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8059F2823F41E1E00F91552 /* PropertiestListViewModel.swift */; };
+		D8059F2923F41E1E00F91552 /* PropertiesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8059F2823F41E1E00F91552 /* PropertiesListViewModel.swift */; };
 		D8059F2B23F41FA500F91552 /* PropertiesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8059F2A23F41FA500F91552 /* PropertiesList.swift */; };
+		D886B3D723F4362B00A45D64 /* PropertyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D886B3D623F4362B00A45D64 /* PropertyCell.swift */; };
+		D886B3D923F4364A00A45D64 /* AreaCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D886B3D823F4364A00A45D64 /* AreaCell.swift */; };
 		D8BBF2C723F412A900E18A21 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8BBF2C623F412A900E18A21 /* AppDelegate.swift */; };
-		D8BBF2CB23F412A900E18A21 /* PropertiestListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8BBF2CA23F412A900E18A21 /* PropertiestListViewController.swift */; };
+		D8BBF2CB23F412A900E18A21 /* PropertiesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8BBF2CA23F412A900E18A21 /* PropertiesListViewController.swift */; };
 		D8BBF2D023F412AA00E18A21 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D8BBF2CF23F412AA00E18A21 /* Assets.xcassets */; };
 		D8BBF2D323F412AA00E18A21 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D8BBF2D123F412AA00E18A21 /* LaunchScreen.storyboard */; };
 		D8BBF2DE23F412AA00E18A21 /* PropertiesListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8BBF2DD23F412AA00E18A21 /* PropertiesListViewModelTests.swift */; };
@@ -31,11 +33,13 @@
 /* Begin PBXFileReference section */
 		D8059F2423F41DBC00F91552 /* PropertiesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertiesService.swift; sourceTree = "<group>"; };
 		D8059F2623F41DD800F91552 /* Property.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Property.swift; sourceTree = "<group>"; };
-		D8059F2823F41E1E00F91552 /* PropertiestListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertiestListViewModel.swift; sourceTree = "<group>"; };
+		D8059F2823F41E1E00F91552 /* PropertiesListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertiesListViewModel.swift; sourceTree = "<group>"; };
 		D8059F2A23F41FA500F91552 /* PropertiesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertiesList.swift; sourceTree = "<group>"; };
+		D886B3D623F4362B00A45D64 /* PropertyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyCell.swift; sourceTree = "<group>"; };
+		D886B3D823F4364A00A45D64 /* AreaCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaCell.swift; sourceTree = "<group>"; };
 		D8BBF2C323F412A900E18A21 /* HemnetLite.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HemnetLite.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8BBF2C623F412A900E18A21 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D8BBF2CA23F412A900E18A21 /* PropertiestListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertiestListViewController.swift; sourceTree = "<group>"; };
+		D8BBF2CA23F412A900E18A21 /* PropertiesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertiesListViewController.swift; sourceTree = "<group>"; };
 		D8BBF2CF23F412AA00E18A21 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D8BBF2D223F412AA00E18A21 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D8BBF2D423F412AA00E18A21 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -71,6 +75,15 @@
 			path = DataModels;
 			sourceTree = "<group>";
 		};
+		D886B3DA23F4365100A45D64 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				D886B3D623F4362B00A45D64 /* PropertyCell.swift */,
+				D886B3D823F4364A00A45D64 /* AreaCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		D8BBF2BA23F412A900E18A21 = {
 			isa = PBXGroup;
 			children = (
@@ -95,11 +108,12 @@
 				D8BBF2D423F412AA00E18A21 /* Info.plist */,
 				D8BBF2C623F412A900E18A21 /* AppDelegate.swift */,
 				D8059F2423F41DBC00F91552 /* PropertiesService.swift */,
-				D8BBF2CA23F412A900E18A21 /* PropertiestListViewController.swift */,
-				D8059F2823F41E1E00F91552 /* PropertiestListViewModel.swift */,
+				D8BBF2CA23F412A900E18A21 /* PropertiesListViewController.swift */,
+				D8059F2823F41E1E00F91552 /* PropertiesListViewModel.swift */,
 				D8059F2C23F41FAE00F91552 /* DataModels */,
 				D8BBF2CF23F412AA00E18A21 /* Assets.xcassets */,
 				D8BBF2D123F412AA00E18A21 /* LaunchScreen.storyboard */,
+				D886B3DA23F4365100A45D64 /* Cells */,
 			);
 			path = HemnetLite;
 			sourceTree = "<group>";
@@ -213,11 +227,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D8059F2923F41E1E00F91552 /* PropertiestListViewModel.swift in Sources */,
+				D8059F2923F41E1E00F91552 /* PropertiesListViewModel.swift in Sources */,
 				D8059F2723F41DD800F91552 /* Property.swift in Sources */,
-				D8BBF2CB23F412A900E18A21 /* PropertiestListViewController.swift in Sources */,
+				D886B3D923F4364A00A45D64 /* AreaCell.swift in Sources */,
+				D8BBF2CB23F412A900E18A21 /* PropertiesListViewController.swift in Sources */,
 				D8059F2523F41DBC00F91552 /* PropertiesService.swift in Sources */,
 				D8059F2B23F41FA500F91552 /* PropertiesList.swift in Sources */,
+				D886B3D723F4362B00A45D64 /* PropertyCell.swift in Sources */,
 				D8BBF2C723F412A900E18A21 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

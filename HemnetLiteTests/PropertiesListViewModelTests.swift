@@ -4,35 +4,30 @@ import XCTest
 class PropertiesListViewModelTests: XCTestCase {
     
     func testFetchPropertiesList_successfull() {
-        let service = PropertiesServiceMock(shouldReturnError: false)
+        let serviceMock = PropertiesServiceMock(shouldReturnError: false)
+        let viewModel = PropertiesListViewModelImpl(service: serviceMock)
         let expectation = XCTestExpectation(description: "List is fetched")
 
-        service.fetchPropertiesList(completion: { result in
-            switch result {
-            case .failure(let error): XCTFail("Received an error: \(error.localizedDescription)")
-            case .success(let list):
-                XCTAssertNotNil(list)
-                XCTAssertEqual(list.items.count, 2)
-                XCTAssertEqual(list.items[0].type, .highlighted)
-                XCTAssertEqual(list.items[1].type, .area)
-                expectation.fulfill()
-            }
+        viewModel.fetchPropertiesList(completion: { list, error in
+            XCTAssertNotNil(viewModel.list)
+            XCTAssertNil(error)
+            XCTAssertEqual(viewModel.list!.items.count, 2)
+            XCTAssertEqual(viewModel.list!.items[0].type, .highlighted)
+            XCTAssertEqual(viewModel.list!.items[1].type, .area)
+            expectation.fulfill()
         })
-
         wait(for: [expectation], timeout: 1)
     }
 
     func testFetchPropertiesList_recievedError() {
-        let service = PropertiesServiceMock(shouldReturnError: true)
+        let serviceMock = PropertiesServiceMock(shouldReturnError: true)
+        let viewModel = PropertiesListViewModelImpl(service: serviceMock)
         let expectation = XCTestExpectation(description: "Received an error")
 
-        service.fetchPropertiesList(completion: { result in
-            switch result {
-            case .failure(let error):
-                XCTAssertNotNil(error)
-                expectation.fulfill()
-            case .success(let list): XCTFail("Received a list")
-            }
+        viewModel.fetchPropertiesList(completion: { list, error in
+            XCTAssertNil(viewModel.list)
+            XCTAssertNotNil(error)
+            expectation.fulfill()
         })
 
         wait(for: [expectation], timeout: 1)
