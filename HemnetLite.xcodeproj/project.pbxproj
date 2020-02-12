@@ -7,11 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D8059F2523F41DBC00F91552 /* PropertiesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8059F2423F41DBC00F91552 /* PropertiesService.swift */; };
+		D8059F2723F41DD800F91552 /* Property.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8059F2623F41DD800F91552 /* Property.swift */; };
+		D8059F2923F41E1E00F91552 /* PropertiestListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8059F2823F41E1E00F91552 /* PropertiestListViewModel.swift */; };
+		D8059F2B23F41FA500F91552 /* PropertiesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8059F2A23F41FA500F91552 /* PropertiesList.swift */; };
 		D8BBF2C723F412A900E18A21 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8BBF2C623F412A900E18A21 /* AppDelegate.swift */; };
-		D8BBF2CB23F412A900E18A21 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8BBF2CA23F412A900E18A21 /* ViewController.swift */; };
+		D8BBF2CB23F412A900E18A21 /* PropertiestListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8BBF2CA23F412A900E18A21 /* PropertiestListViewController.swift */; };
 		D8BBF2D023F412AA00E18A21 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D8BBF2CF23F412AA00E18A21 /* Assets.xcassets */; };
 		D8BBF2D323F412AA00E18A21 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D8BBF2D123F412AA00E18A21 /* LaunchScreen.storyboard */; };
-		D8BBF2DE23F412AA00E18A21 /* HemnetLiteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8BBF2DD23F412AA00E18A21 /* HemnetLiteTests.swift */; };
+		D8BBF2DE23F412AA00E18A21 /* PropertiesListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8BBF2DD23F412AA00E18A21 /* PropertiesListViewModelTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -25,14 +29,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D8059F2423F41DBC00F91552 /* PropertiesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertiesService.swift; sourceTree = "<group>"; };
+		D8059F2623F41DD800F91552 /* Property.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Property.swift; sourceTree = "<group>"; };
+		D8059F2823F41E1E00F91552 /* PropertiestListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertiestListViewModel.swift; sourceTree = "<group>"; };
+		D8059F2A23F41FA500F91552 /* PropertiesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertiesList.swift; sourceTree = "<group>"; };
 		D8BBF2C323F412A900E18A21 /* HemnetLite.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HemnetLite.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8BBF2C623F412A900E18A21 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D8BBF2CA23F412A900E18A21 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		D8BBF2CA23F412A900E18A21 /* PropertiestListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertiestListViewController.swift; sourceTree = "<group>"; };
 		D8BBF2CF23F412AA00E18A21 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D8BBF2D223F412AA00E18A21 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D8BBF2D423F412AA00E18A21 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D8BBF2D923F412AA00E18A21 /* HemnetLiteTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HemnetLiteTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		D8BBF2DD23F412AA00E18A21 /* HemnetLiteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HemnetLiteTests.swift; sourceTree = "<group>"; };
+		D8BBF2DD23F412AA00E18A21 /* PropertiesListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertiesListViewModelTests.swift; sourceTree = "<group>"; };
 		D8BBF2DF23F412AA00E18A21 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -54,6 +62,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D8059F2C23F41FAE00F91552 /* DataModels */ = {
+			isa = PBXGroup;
+			children = (
+				D8059F2623F41DD800F91552 /* Property.swift */,
+				D8059F2A23F41FA500F91552 /* PropertiesList.swift */,
+			);
+			path = DataModels;
+			sourceTree = "<group>";
+		};
 		D8BBF2BA23F412A900E18A21 = {
 			isa = PBXGroup;
 			children = (
@@ -75,11 +92,14 @@
 		D8BBF2C523F412A900E18A21 /* HemnetLite */ = {
 			isa = PBXGroup;
 			children = (
+				D8BBF2D423F412AA00E18A21 /* Info.plist */,
 				D8BBF2C623F412A900E18A21 /* AppDelegate.swift */,
-				D8BBF2CA23F412A900E18A21 /* ViewController.swift */,
+				D8059F2423F41DBC00F91552 /* PropertiesService.swift */,
+				D8BBF2CA23F412A900E18A21 /* PropertiestListViewController.swift */,
+				D8059F2823F41E1E00F91552 /* PropertiestListViewModel.swift */,
+				D8059F2C23F41FAE00F91552 /* DataModels */,
 				D8BBF2CF23F412AA00E18A21 /* Assets.xcassets */,
 				D8BBF2D123F412AA00E18A21 /* LaunchScreen.storyboard */,
-				D8BBF2D423F412AA00E18A21 /* Info.plist */,
 			);
 			path = HemnetLite;
 			sourceTree = "<group>";
@@ -87,7 +107,7 @@
 		D8BBF2DC23F412AA00E18A21 /* HemnetLiteTests */ = {
 			isa = PBXGroup;
 			children = (
-				D8BBF2DD23F412AA00E18A21 /* HemnetLiteTests.swift */,
+				D8BBF2DD23F412AA00E18A21 /* PropertiesListViewModelTests.swift */,
 				D8BBF2DF23F412AA00E18A21 /* Info.plist */,
 			);
 			path = HemnetLiteTests;
@@ -193,7 +213,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D8BBF2CB23F412A900E18A21 /* ViewController.swift in Sources */,
+				D8059F2923F41E1E00F91552 /* PropertiestListViewModel.swift in Sources */,
+				D8059F2723F41DD800F91552 /* Property.swift in Sources */,
+				D8BBF2CB23F412A900E18A21 /* PropertiestListViewController.swift in Sources */,
+				D8059F2523F41DBC00F91552 /* PropertiesService.swift in Sources */,
+				D8059F2B23F41FA500F91552 /* PropertiesList.swift in Sources */,
 				D8BBF2C723F412A900E18A21 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -202,7 +226,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D8BBF2DE23F412AA00E18A21 /* HemnetLiteTests.swift in Sources */,
+				D8BBF2DE23F412AA00E18A21 /* PropertiesListViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -348,6 +372,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = HemnetLite/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -365,6 +390,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = HemnetLite/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -383,7 +409,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = HemnetLiteTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -404,7 +430,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = HemnetLiteTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
