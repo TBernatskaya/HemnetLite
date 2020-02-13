@@ -8,7 +8,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let frame = UIScreen.main.bounds
         window = UIWindow(frame: frame)
 
-        window?.rootViewController = PropertiesListViewController()
+        let navigationController = UINavigationController(rootViewController: PropertiesListViewController())
+        window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
 
         return true

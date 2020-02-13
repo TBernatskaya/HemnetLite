@@ -7,35 +7,25 @@ class PropertiesListViewController: UIViewController {
     var viewModel: PropertiesListViewModel
 
     lazy var navigationBar: UINavigationBar = {
-        let navigationBar = UINavigationBar(frame: CGRect(x: 0,
-                                                          y: 0,
-                                                          width: self.view.frame.width,
-                                                          height: 40)
-        )
-        let item = UINavigationItem(title: "Sök bostad")
-        navigationBar.items?.append(item)
+        let navigationBar = self.navigationController!.navigationBar
         navigationBar.autoresizingMask = [.flexibleWidth]
         let titleTextAttributes: [NSAttributedString.Key: Any] = [.foregroundColor: UIColor.white]
         let tintcolor: UIColor = .systemGreen
 
         if #available(iOS 13.0, *) {
-            navigationBar.frame = CGRect(x: 0,
-                                         y: 0,
-                                         width: self.view.frame.width,
-                                         height: 100
-            )
             let navBarAppearance = UINavigationBarAppearance()
             navBarAppearance.configureWithOpaqueBackground()
-            navigationBar.prefersLargeTitles = true
             navBarAppearance.largeTitleTextAttributes = titleTextAttributes
             navBarAppearance.titleTextAttributes = titleTextAttributes
             navBarAppearance.backgroundColor = tintcolor
             navigationBar.standardAppearance = navBarAppearance
             navigationBar.scrollEdgeAppearance = navBarAppearance
+            navigationBar.compactAppearance = navBarAppearance
         } else {
             navigationBar.barTintColor = tintcolor
             navigationBar.titleTextAttributes = titleTextAttributes
         }
+        navigationBar.tintColor = .white
         return navigationBar
     }()
 
@@ -63,16 +53,19 @@ class PropertiesListViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "Sök bostad"
         view.backgroundColor = .white
-        view.addSubview(navigationBar)
         view.addSubview(collectionView)
         collectionView.dataSource = self
         collectionView.delegate = self
-
-        updateConstraints()
         updateList()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        view.addSubview(navigationBar)
+        updateConstraints()
+    }
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         let flowLayout = collectionView.collectionViewLayout
         flowLayout.invalidateLayout()
@@ -80,8 +73,8 @@ class PropertiesListViewController: UIViewController {
 
     private func updateConstraints() {
         NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(equalTo: navigationBar.bottomAnchor, constant: 12),
-            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -32),
+            collectionView.topAnchor.constraint(equalTo: navigationBar.bottomAnchor, constant: 24),
+            collectionView.bottomAnchor.constraint(greaterThanOrEqualTo: view.bottomAnchor, constant: -32),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24)
         ])
@@ -166,6 +159,24 @@ extension PropertiesListViewController: UICollectionViewDataSource {
         cell.price.text = item.askingPrice
         if item.type == .highlighted { cell.setImageBorder() }
         return cell
+    }
+}
+
+extension PropertiesListViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView,
+                        didSelectItemAt indexPath: IndexPath) {
+        guard let list = viewModel.list else { return }
+        let item = list.items[indexPath.row]
+        // TODO: prevent user from double tap
+        openDetails(property: item)
+    }
+
+    private func openDetails(property: Property) {
+        DispatchQueue.main.async {
+            guard let navigationController = self.navigationController else { return }
+            let detailsVC = PropertyDetailsViewController(property: property)
+            navigationController.pushViewController(detailsVC, animated: true)
+        }
     }
 }
 

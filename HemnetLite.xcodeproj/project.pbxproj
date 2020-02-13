@@ -18,6 +18,7 @@
 		D8BBF2D023F412AA00E18A21 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D8BBF2CF23F412AA00E18A21 /* Assets.xcassets */; };
 		D8BBF2D323F412AA00E18A21 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D8BBF2D123F412AA00E18A21 /* LaunchScreen.storyboard */; };
 		D8BBF2DE23F412AA00E18A21 /* PropertiesListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8BBF2DD23F412AA00E18A21 /* PropertiesListViewModelTests.swift */; };
+		D8DC346623F5A318004DCF2F /* PropertyDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DC346523F5A318004DCF2F /* PropertyDetailsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +47,7 @@
 		D8BBF2D923F412AA00E18A21 /* HemnetLiteTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HemnetLiteTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8BBF2DD23F412AA00E18A21 /* PropertiesListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertiesListViewModelTests.swift; sourceTree = "<group>"; };
 		D8BBF2DF23F412AA00E18A21 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D8DC346523F5A318004DCF2F /* PropertyDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyDetailsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,13 +109,14 @@
 			children = (
 				D8BBF2D423F412AA00E18A21 /* Info.plist */,
 				D8BBF2C623F412A900E18A21 /* AppDelegate.swift */,
-				D8059F2423F41DBC00F91552 /* PropertiesService.swift */,
 				D8BBF2CA23F412A900E18A21 /* PropertiesListViewController.swift */,
 				D8059F2823F41E1E00F91552 /* PropertiesListViewModel.swift */,
-				D8059F2C23F41FAE00F91552 /* DataModels */,
+				D8059F2423F41DBC00F91552 /* PropertiesService.swift */,
+				D8DC346523F5A318004DCF2F /* PropertyDetailsViewController.swift */,
 				D8BBF2CF23F412AA00E18A21 /* Assets.xcassets */,
-				D8BBF2D123F412AA00E18A21 /* LaunchScreen.storyboard */,
 				D886B3DA23F4365100A45D64 /* Cells */,
+				D8059F2C23F41FAE00F91552 /* DataModels */,
+				D8BBF2D123F412AA00E18A21 /* LaunchScreen.storyboard */,
 			);
 			path = HemnetLite;
 			sourceTree = "<group>";
@@ -227,6 +230,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D8DC346623F5A318004DCF2F /* PropertyDetailsViewController.swift in Sources */,
 				D8059F2923F41E1E00F91552 /* PropertiesListViewModel.swift in Sources */,
 				D8059F2723F41DD800F91552 /* Property.swift in Sources */,
 				D886B3D923F4364A00A45D64 /* AreaCell.swift in Sources */,

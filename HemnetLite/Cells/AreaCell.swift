@@ -2,21 +2,26 @@ import UIKit
 
 class AreaCell: UICollectionViewCell {
 
+    lazy var stackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [self.title,
+                                                       self.imageView,
+                                                       self.area,
+                                                       self.rating,
+                                                       self.price
+        ])
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .vertical
+        stackView.distribution = .fillProportionally
+        stackView.spacing = 4
+        return stackView
+    }()
+
     lazy var imageView: UIImageView = {
         let image = UIImage(named: "default-placeholder")
         let imageView = UIImageView(image: image, highlightedImage: nil)
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         return imageView
-    }()
-
-    lazy var stackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [self.title, self.imageView, self.area, self.rating, self.price])
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.axis = .vertical
-        stackView.distribution = .fillProportionally
-        stackView.spacing = 4
-        return stackView
     }()
 
     lazy var title: UILabel = {
@@ -72,7 +77,7 @@ class AreaCell: UICollectionViewCell {
         area.text = nil
         price.text = nil
         rating.text = nil
-        imageView.image = nil
+        imageView.image = UIImage(named: "default-placeholder")
     }
 
     private func setupConstraints() {
