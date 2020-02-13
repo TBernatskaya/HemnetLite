@@ -5,6 +5,7 @@ class PropertiesListViewController: UIViewController {
     override var preferredStatusBarStyle: UIStatusBarStyle { .lightContent }
 
     var viewModel: PropertiesListViewModel
+    var openDetails: (Property) -> ()
 
     lazy var navigationBar: UINavigationBar = {
         let navigationBar = self.navigationController!.navigationBar
@@ -42,8 +43,9 @@ class PropertiesListViewController: UIViewController {
     }()
 
 
-    init(viewModel: PropertiesListViewModel = PropertiesListViewModelImpl()) {
+    init(viewModel: PropertiesListViewModel, openDetails: @escaping (Property) -> ()) {
         self.viewModel = viewModel
+        self.openDetails = openDetails
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -168,15 +170,7 @@ extension PropertiesListViewController: UICollectionViewDelegate {
         guard let list = viewModel.list else { return }
         let item = list.items[indexPath.row]
         // TODO: prevent user from double tap
-        openDetails(property: item)
-    }
-
-    private func openDetails(property: Property) {
-        DispatchQueue.main.async {
-            guard let navigationController = self.navigationController else { return }
-            let detailsVC = PropertyDetailsViewController(property: property)
-            navigationController.pushViewController(detailsVC, animated: true)
-        }
+        openDetails(item)
     }
 }
 
