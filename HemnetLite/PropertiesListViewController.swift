@@ -2,7 +2,42 @@ import UIKit
 
 class PropertiesListViewController: UIViewController {
 
+    override var preferredStatusBarStyle: UIStatusBarStyle { .lightContent }
+
     var viewModel: PropertiesListViewModel
+
+    lazy var navigationBar: UINavigationBar = {
+        let navigationBar = UINavigationBar(frame: CGRect(x: 0,
+                                                          y: 0,
+                                                          width: self.view.frame.width,
+                                                          height: 40)
+        )
+        let item = UINavigationItem(title: "Sök bostad")
+        navigationBar.items?.append(item)
+        navigationBar.autoresizingMask = [.flexibleWidth]
+        let titleTextAttributes: [NSAttributedString.Key: Any] = [.foregroundColor: UIColor.white]
+        let tintcolor: UIColor = .systemGreen
+
+        if #available(iOS 13.0, *) {
+            navigationBar.frame = CGRect(x: 0,
+                                         y: 0,
+                                         width: self.view.frame.width,
+                                         height: 100
+            )
+            let navBarAppearance = UINavigationBarAppearance()
+            navBarAppearance.configureWithOpaqueBackground()
+            navigationBar.prefersLargeTitles = true
+            navBarAppearance.largeTitleTextAttributes = titleTextAttributes
+            navBarAppearance.titleTextAttributes = titleTextAttributes
+            navBarAppearance.backgroundColor = tintcolor
+            navigationBar.standardAppearance = navBarAppearance
+            navigationBar.scrollEdgeAppearance = navBarAppearance
+        } else {
+            navigationBar.barTintColor = tintcolor
+            navigationBar.titleTextAttributes = titleTextAttributes
+        }
+        return navigationBar
+    }()
 
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -10,6 +45,7 @@ class PropertiesListViewController: UIViewController {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.backgroundColor = .white
         collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.showsVerticalScrollIndicator = false
         collectionView.register(PropertyCell.self, forCellWithReuseIdentifier: PropertyCell.reuseIdentifier)
         collectionView.register(AreaCell.self, forCellWithReuseIdentifier: AreaCell.reuseIdentifier)
         return collectionView
@@ -28,7 +64,7 @@ class PropertiesListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-
+        view.addSubview(navigationBar)
         view.addSubview(collectionView)
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -44,10 +80,10 @@ class PropertiesListViewController: UIViewController {
 
     private func updateConstraints() {
         NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(equalTo: view.topAnchor, constant: 80),
-            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -60),
-            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -60),
-            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 60)
+            collectionView.topAnchor.constraint(equalTo: navigationBar.bottomAnchor, constant: 12),
+            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -32),
+            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
+            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24)
         ])
     }
 
@@ -105,6 +141,8 @@ extension PropertiesListViewController: UICollectionViewDataSource {
             downloadImage(from: item.image, completion: { cell.imageView.image = $0 })
             cell.title.text = "Område"
             cell.area.text = item.area
+            item.averagePrice.map { cell.price.text = "Snittpris: " + $0 }
+            item.rating.map { cell.rating.text = "Betyg: " + $0 }
             return cell
 
         case .highlighted:
@@ -113,11 +151,10 @@ extension PropertiesListViewController: UICollectionViewDataSource {
                 for: indexPath
             ) as! PropertyCell
             downloadImage(from: item.image, completion: { cell.imageView.image = $0 })
-            cell.title.text = item.streetAddress
+            cell.streetAddress.text = item.streetAddress
             cell.area.text = item.area
-            cell.price.text = item.averagePrice
-            cell.layer.borderWidth = 2
-            cell.layer.borderColor = UIColor.yellow.cgColor
+            cell.price.text = item.askingPrice
+            cell.setImageBorder()
             return cell
 
         case .property:
@@ -126,9 +163,9 @@ extension PropertiesListViewController: UICollectionViewDataSource {
                 for: indexPath
             ) as! PropertyCell
             downloadImage(from: item.image, completion: { cell.imageView.image = $0 })
-            cell.title.text = item.streetAddress
+            cell.streetAddress.text = item.streetAddress
             cell.area.text = item.area
-            cell.price.text = item.averagePrice
+            cell.price.text = item.askingPrice
             return cell
         }
     }

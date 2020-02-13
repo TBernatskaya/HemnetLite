@@ -8,6 +8,7 @@ struct Property: Codable {
     let monthlyFee: String?
     let municipality: String?
     let area: String
+    let rating: String?
     let daysOnHemnet: Int?
     let livingArea: Float?
     let numberOfRooms: Int?

@@ -2,10 +2,16 @@ import UIKit
 
 class PropertyCell: UICollectionViewCell {
 
-    var imageView = UIImageView()
+    lazy var imageView: UIImageView = {
+        let image = UIImage(named: "default-placeholder")
+        let imageView = UIImageView(image: image, highlightedImage: nil)
+        imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
+        return imageView
+    }()
 
     lazy var stackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [self.imageView, self.title, self.area, self.price])
+        let stackView = UIStackView(arrangedSubviews: [self.imageView, self.streetAddress, self.area, self.price])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
         stackView.distribution = .fillProportionally
@@ -13,24 +19,27 @@ class PropertyCell: UICollectionViewCell {
         return stackView
     }()
 
-    lazy var title: UILabel = {
+    lazy var streetAddress: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 16, weight: .semibold)
+        label.font = .systemFont(ofSize: 14, weight: .semibold)
         label.textColor = .black
+        label.setContentCompressionResistancePriority(.required, for: .vertical)
         return label
     }()
 
     lazy var area: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 14)
+        label.font = .systemFont(ofSize: 12, weight: .light)
         label.textColor = .black
+        label.setContentCompressionResistancePriority(.required, for: .vertical)
         return label
     }()
 
     lazy var price: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 14)
+        label.font = .systemFont(ofSize: 12)
         label.textColor = .black
+        label.setContentCompressionResistancePriority(.required, for: .vertical)
         return label
     }()
 
@@ -49,15 +58,19 @@ class PropertyCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
+    func setImageBorder() {
+        imageView.layer.borderWidth = 2
+        imageView.layer.borderColor = UIColor.yellow.cgColor
+    }
+
     override func prepareForReuse() {
         super.prepareForReuse()
-        title.text = nil
+        streetAddress.text = nil
         area.text = nil
         price.text = nil
     }
 
     private func setupConstraints() {
-        imageView.contentMode = .scaleAspectFit
         NSLayoutConstraint.activate([
             stackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),
             stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5),
