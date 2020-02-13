@@ -1,7 +1,8 @@
-import Foundation
+import UIKit
 
 protocol PropertiesListViewModel {
     var list: PropertiesList? { get }
+    func downloadImage(from url: URL, completion: @escaping (UIImage?) -> ())
     func fetchPropertiesList(completion: @escaping (PropertiesList?, String?) -> ())
 }
 
@@ -22,5 +23,15 @@ class PropertiesListViewModelImpl: PropertiesListViewModel {
             case .failure(let error): completion(nil, error.localizedDescription)
             }
         })
+    }
+
+    func downloadImage(from url: URL, completion: @escaping (UIImage?) -> ()) {
+        DispatchQueue.global().async {
+            do {
+                let data = try Data(contentsOf: url)
+                completion(UIImage(data: data))
+            }
+            catch { completion(nil) }
+        }
     }
 }

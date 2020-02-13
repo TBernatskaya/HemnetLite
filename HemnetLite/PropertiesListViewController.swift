@@ -94,9 +94,7 @@ class PropertiesListViewController: UIViewController {
                 DispatchQueue.main.async {
                     self.collectionView.reloadData()
                 }
-            } else {
-                self.presentAlert(with: errorMessage)
-            }
+            } else { self.presentAlert(with: errorMessage) }
         })
     }
 
@@ -108,14 +106,6 @@ class PropertiesListViewController: UIViewController {
         DispatchQueue.main.async {
             self.present(alert, animated: true, completion: nil)
         }
-    }
-
-    private func downloadImage(from url: URL, completion: @escaping (UIImage?) -> ()) {
-        do {
-            let data = try Data(contentsOf: url)
-            completion(UIImage(data: data))
-        }
-        catch { completion(nil) }
     }
 }
 
@@ -134,40 +124,48 @@ extension PropertiesListViewController: UICollectionViewDataSource {
         let item = list.items[indexPath.row]
         switch item.type {
         case .area:
-            let cell = collectionView.dequeueReusableCell(
-                withReuseIdentifier: AreaCell.reuseIdentifier,
-                for: indexPath
-            ) as! AreaCell
-            downloadImage(from: item.image, completion: { cell.imageView.image = $0 })
-            cell.title.text = "Område"
-            cell.area.text = item.area
-            item.averagePrice.map { cell.price.text = "Snittpris: " + $0 }
-            item.rating.map { cell.rating.text = "Betyg: " + $0 }
-            return cell
-
-        case .highlighted:
-            let cell = collectionView.dequeueReusableCell(
-                withReuseIdentifier: PropertyCell.reuseIdentifier,
-                for: indexPath
-            ) as! PropertyCell
-            downloadImage(from: item.image, completion: { cell.imageView.image = $0 })
-            cell.streetAddress.text = item.streetAddress
-            cell.area.text = item.area
-            cell.price.text = item.askingPrice
-            cell.setImageBorder()
-            return cell
-
-        case .property:
-            let cell = collectionView.dequeueReusableCell(
-                withReuseIdentifier: PropertyCell.reuseIdentifier,
-                for: indexPath
-            ) as! PropertyCell
-            downloadImage(from: item.image, completion: { cell.imageView.image = $0 })
-            cell.streetAddress.text = item.streetAddress
-            cell.area.text = item.area
-            cell.price.text = item.askingPrice
-            return cell
+            return configureAreaCell(with: item, indexPath: indexPath)
+        default:
+            return configurePropertyCell(with: item, indexPath: indexPath)
         }
+    }
+
+    private func configureAreaCell(with item: Property, indexPath: IndexPath) -> AreaCell {
+        let cell = collectionView.dequeueReusableCell(
+            withReuseIdentifier: AreaCell.reuseIdentifier,
+            for: indexPath
+        ) as! AreaCell
+
+        viewModel.downloadImage(from: item.image, completion: { image in
+            DispatchQueue.main.async {
+                cell.imageView.image = image
+            }
+        })
+
+        cell.title.text = "Område"
+        cell.area.text = item.area
+        item.averagePrice.map { cell.price.text = "Snittpris: " + $0 }
+        item.rating.map { cell.rating.text = "Betyg: " + $0 }
+        return cell
+    }
+
+    private func configurePropertyCell(with item: Property, indexPath: IndexPath) -> PropertyCell {
+        let cell = collectionView.dequeueReusableCell(
+            withReuseIdentifier: PropertyCell.reuseIdentifier,
+            for: indexPath
+        ) as! PropertyCell
+
+        viewModel.downloadImage(from: item.image, completion: { image in
+            DispatchQueue.main.async {
+                cell.imageView.image = image
+            }
+        })
+        
+        cell.streetAddress.text = item.streetAddress
+        cell.area.text = item.area
+        cell.price.text = item.askingPrice
+        if item.type == .highlighted { cell.setImageBorder() }
+        return cell
     }
 }
 
