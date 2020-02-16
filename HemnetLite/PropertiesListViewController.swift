@@ -7,29 +7,6 @@ class PropertiesListViewController: UIViewController {
     var viewModel: PropertiesListViewModel
     var openDetails: (Property) -> ()
 
-    lazy var navigationBar: UINavigationBar = {
-        let navigationBar = self.navigationController!.navigationBar
-        navigationBar.autoresizingMask = [.flexibleWidth]
-        let titleTextAttributes: [NSAttributedString.Key: Any] = [.foregroundColor: UIColor.white]
-        let tintcolor: UIColor = .systemGreen
-
-        if #available(iOS 13.0, *) {
-            let navBarAppearance = UINavigationBarAppearance()
-            navBarAppearance.configureWithOpaqueBackground()
-            navBarAppearance.largeTitleTextAttributes = titleTextAttributes
-            navBarAppearance.titleTextAttributes = titleTextAttributes
-            navBarAppearance.backgroundColor = tintcolor
-            navigationBar.standardAppearance = navBarAppearance
-            navigationBar.scrollEdgeAppearance = navBarAppearance
-            navigationBar.compactAppearance = navBarAppearance
-        } else {
-            navigationBar.barTintColor = tintcolor
-            navigationBar.titleTextAttributes = titleTextAttributes
-        }
-        navigationBar.tintColor = .white
-        return navigationBar
-    }()
-
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
@@ -61,25 +38,45 @@ class PropertiesListViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.delegate = self
         updateList()
+        updateConstraints()
+        styleNavigationBar()
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        view.addSubview(navigationBar)
-        updateConstraints()
-    }
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         let flowLayout = collectionView.collectionViewLayout
         flowLayout.invalidateLayout()
     }
 
     private func updateConstraints() {
+        let topMargin = (self.navigationController?.navigationBar.frame.height ?? 60) + 16
         NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(equalTo: navigationBar.bottomAnchor, constant: 24),
+            collectionView.topAnchor.constraint(equalTo: view.topAnchor, constant: topMargin),
             collectionView.bottomAnchor.constraint(greaterThanOrEqualTo: view.bottomAnchor, constant: -32),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24)
         ])
+    }
+
+    private func styleNavigationBar() {
+        let navigationBar = self.navigationController!.navigationBar
+        navigationBar.autoresizingMask = [.flexibleWidth]
+        let titleTextAttributes: [NSAttributedString.Key: Any] = [.foregroundColor: UIColor.white]
+        let tintcolor: UIColor = .systemGreen
+
+        if #available(iOS 13.0, *) {
+            let navBarAppearance = UINavigationBarAppearance()
+            navBarAppearance.configureWithOpaqueBackground()
+            navBarAppearance.largeTitleTextAttributes = titleTextAttributes
+            navBarAppearance.titleTextAttributes = titleTextAttributes
+            navBarAppearance.backgroundColor = tintcolor
+            navigationBar.standardAppearance = navBarAppearance
+            navigationBar.scrollEdgeAppearance = navBarAppearance
+            navigationBar.compactAppearance = navBarAppearance
+        } else {
+            navigationBar.barTintColor = tintcolor
+            navigationBar.titleTextAttributes = titleTextAttributes
+        }
+        navigationBar.tintColor = .white
     }
 
     private func updateList() {

@@ -3,10 +3,6 @@ import UIKit
 class PropertyDetailsViewController: UIViewController {
     var property: Property
 
-    lazy var navigationBar: UINavigationBar = {
-        self.navigationController!.navigationBar
-    }()
-
     lazy var stackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [self.streetAddress,
                                                        self.area,
@@ -109,9 +105,9 @@ class PropertyDetailsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = property.streetAddress
         view.backgroundColor = .white
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(navigationBar)
         view.addSubview(stackView)
         updateView()
         setupConstraints()
@@ -119,14 +115,13 @@ class PropertyDetailsViewController: UIViewController {
 
     private func setupConstraints() {
         let topPadding: CGFloat = 60
-        let navBarHeight = navigationBar.frame.height
 
         NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: view.topAnchor, constant: navBarHeight + topPadding),
-            stackView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -60),
+            stackView.topAnchor.constraint(equalTo: view.topAnchor, constant: topPadding),
+            stackView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -topPadding),
             stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
             stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
-            stackView.heightAnchor.constraint(equalToConstant: view.frame.height - navBarHeight - topPadding),
+            stackView.heightAnchor.constraint(equalToConstant: view.frame.height - topPadding),
             stackView.widthAnchor.constraint(equalToConstant: view.frame.width)
         ])
     }
